@@ -7,6 +7,7 @@ use App\Http\Middleware\TrustHosts;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\DefaultHeader;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Auth\Middleware\Authorize;
@@ -82,5 +83,6 @@ class Kernel extends HttpKernel
         'signed'           => ValidateSignature::class,
         'throttle'         => ThrottleRequests::class,
         'verified'         => EnsureEmailIsVerified::class,
+        'default.headers'  => DefaultHeader::class,
     ];
 }
