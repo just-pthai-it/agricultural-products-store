@@ -24,12 +24,13 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone', 50)->unique();
             $table->string('address', 100);
-            $table->string('image', 1000);
+            $table->string('image', 1000)->nullable();
             $table->string('password', 250);
             $table->rememberToken()->nullable();
             $table->dateTime('created_at')->default(DB::raw('current_timestamp()'));
             $table->dateTime('updated_at')->default(DB::raw('current_timestamp()'))
                   ->useCurrentOnUpdate();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
