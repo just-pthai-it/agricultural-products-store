@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\Dummy;
+use App\Repositories\Abstracts\BaseRepository;
+
+class DummyRepository extends BaseRepository implements Contracts\DummyRepositoryContract
+{
+    function model () : string
+    {
+        return Dummy::class;
+    }
+
+        DummyRepositoryContract::class    => DummyRepository::class,
+
+}
