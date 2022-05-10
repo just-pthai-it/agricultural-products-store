@@ -6,14 +6,14 @@ use App\Repositories\Contracts\DummyRepositoryContract;
 
 class DummyService implements Contracts\DummyServiceContract
 {
-    private DummyRepositoryContract $dummyDepository;
+    private DummyRepositoryContract $dummyRepository;
 
     /**
-     * @param DummyRepositoryContract $dummyDepository
+     * @param DummyRepositoryContract $dummyRepository
      */
-    public function __construct (DummyRepositoryContract $dummyDepository)
+    public function __construct (DummyRepositoryContract $dummyRepository)
     {
-        $this->dummyDepository = $dummyDepository;
+        $this->dummyRepository = $dummyRepository;
     }
 
         DummyServiceContract::class  => DummyService::class,
