@@ -22,6 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request)
 
 Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctum']], function ()
 {
+    Route::post('register', [AuthController::class, 'register'])->withoutMiddleware(['auth:sanctum']);
+
     Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:sanctum']);
 
     Route::post('logout/{options?}', [AuthController::class, 'logout'])

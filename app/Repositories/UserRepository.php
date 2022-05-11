@@ -11,7 +11,4 @@ class UserRepository extends BaseRepository implements Contracts\UserRepositoryC
     {
         return User::class;
     }
-
-        UserRepositoryContract::class    => UserRepository::class,
-
 }

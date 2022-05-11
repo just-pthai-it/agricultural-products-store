@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginFormRequest;
+use App\Http\Requests\RegisterFormRequest;
 use App\Services\Contracts\AuthServiceContract;
 
 class AuthController extends Controller
@@ -19,9 +20,14 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
+    public function register (RegisterFormRequest $request)
+    {
+        return $this->authService->register($request->validated());
+    }
+
     public function login (LoginFormRequest $request)
     {
-        return $this->authService->login($request->all());
+        return $this->authService->login($request->validated());
     }
 
     public function logout (Request $request, string $options = '')
