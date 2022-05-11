@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request)
 
 Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctum']], function ()
 {
-    Route::post('register', [AuthController::class, 'register'])->withoutMiddleware(['auth:sanctum']);
+    Route::post('register', [AuthController::class, 'register'])
+         ->withoutMiddleware(['auth:sanctum']);
 
     Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:sanctum']);
 
@@ -32,10 +34,16 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
 
     Route::group(['prefix' => 'products'], function ()
     {
-       Route::group(['prefix' => '{product_id}'], function ()
-       {
-           Route::get('', [ProductController::class, 'read']);
-       });
+        Route::group(['prefix' => '{product_id}'], function ()
+        {
+            Route::get('', [ProductController::class, 'read']);
+        });
+    });
+
+
+    Route::group(['prefix' => 'categories'], function ()
+    {
+        Route::get('', [CategoryController::class, 'readMany']);
     });
 });
 

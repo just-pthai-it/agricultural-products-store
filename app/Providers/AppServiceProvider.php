@@ -4,15 +4,18 @@ namespace App\Providers;
 
 use App\Services\AuthService;
 use App\Services\ProductService;
+use App\Services\CategoryService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Contracts\AuthServiceContract;
 use App\Services\Contracts\ProductServiceContract;
+use App\Services\Contracts\CategoryServiceContract;
 
 class AppServiceProvider extends ServiceProvider
 {
     public array $bindings = [
-        AuthServiceContract::class    => AuthService::class,
-        ProductServiceContract::class => ProductService::class,
+        AuthServiceContract::class     => AuthService::class,
+        ProductServiceContract::class  => ProductService::class,
+        CategoryServiceContract::class => CategoryService::class,
 
     ];
 
