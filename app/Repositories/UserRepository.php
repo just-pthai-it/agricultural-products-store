@@ -11,4 +11,10 @@ class UserRepository extends BaseRepository implements Contracts\UserRepositoryC
     {
         return User::class;
     }
+
+    public function findProductCartsByUserId (string $userId)
+    {
+        $this->createModel();
+        return $this->model->find($userId)->carts;
+    }
 }

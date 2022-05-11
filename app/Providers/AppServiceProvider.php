@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Services\AuthService;
+use App\Services\UserService;
 use App\Services\ProductService;
 use App\Services\CategoryService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Contracts\AuthServiceContract;
+use App\Services\Contracts\UserServiceContract;
 use App\Services\Contracts\ProductServiceContract;
 use App\Services\Contracts\CategoryServiceContract;
 
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         AuthServiceContract::class     => AuthService::class,
         ProductServiceContract::class  => ProductService::class,
         CategoryServiceContract::class => CategoryService::class,
+        UserServiceContract::class     => UserService::class,
 
     ];
 
