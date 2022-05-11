@@ -8,7 +8,6 @@ class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
-     *
      * @var array
      */
     protected $dontReport = [
@@ -17,7 +16,6 @@ class Handler extends ExceptionHandler
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
-     *
      * @var array
      */
     protected $dontFlash = [
@@ -27,11 +25,17 @@ class Handler extends ExceptionHandler
 
     /**
      * Register the exception handling callbacks for the application.
-     *
      * @return void
      */
-    public function register()
+    public function register ()
     {
-        //
+        $this->renderable(function (CustomBadHttpRequestException $e, $request) {
+            return response($e->getOptions(), $e->getCode());
+        });
+
+        $this->reportable(function (CustomBadHttpRequestException $e)
+        {
+            return false;
+        });
     }
 }
