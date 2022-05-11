@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->unsignedMediumInteger('category_id');
             $table->unsignedTinyInteger('product_unit_id');
             $table->decimal('price');
+            $table->string('preview_image', 1000);
             $table->string('image', 1000);
             $table->dateTime('created_at')->default(DB::raw('current_timestamp()'));
             $table->dateTime('updated_at')->default(DB::raw('current_timestamp()'))
