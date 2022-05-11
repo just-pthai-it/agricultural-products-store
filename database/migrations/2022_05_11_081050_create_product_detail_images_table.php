@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductDetailImageTable extends Migration
+class CreateProductDetailImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateProductDetailImageTable extends Migration
      */
     public function up ()
     {
-        Schema::create('product_detail_image', function (Blueprint $table)
+        Schema::create('product_detail_images', function (Blueprint $table)
         {
             $table->charset   = 'utf8mb4';
             $table->collation = 'utf8mb4_unicode_ci';
