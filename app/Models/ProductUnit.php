@@ -17,7 +17,7 @@ class ProductUnit extends Model
         'type',
     ];
 
-    public function product () : HasMany
+    public function products () : HasMany
     {
         return $this->hasMany(Product::class, 'product_id', 'id');
     }
