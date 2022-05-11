@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Http\FileHelpers;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,8 +17,8 @@ class ProductUnit extends Model
         'type',
     ];
 
-    public function product () : BelongsTo
+    public function product () : HasMany
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->hasMany(Product::class, 'product_id', 'id');
     }
 }

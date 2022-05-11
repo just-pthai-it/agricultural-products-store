@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +20,7 @@ class Product extends Model
         'category_id',
         'product_unit_id',
         'price',
+        'preview_image',
         'image',
         'created_at',
         'updated_at',
@@ -38,9 +38,9 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function productUnit () : HasOne
+    public function productUnit () : BelongsTo
     {
-        return $this->hasOne(ProductUnit::class, 'product_unit_id', 'id');
+        return $this->belongsTo(ProductUnit::class, 'product_unit_id', 'id');
     }
 
     public function productBatches () : HasMany
@@ -58,5 +58,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id')
                     ->withPivot(['quantity', 'price']);
+    }
+
+    public function productDetailImages () : HasMany
+    {
+        return $this->hasMany(ProductDetailImage::class, 'product_id', 'id');
     }
 }
