@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->charset   = 'utf8mb4';
             $table->collation = 'utf8mb4_unicode_ci';
             $table->unsignedMediumInteger('id')->autoIncrement();
-            $table->unsignedMediumInteger('user_id')->unique();
+            $table->unsignedMediumInteger('user_id');
             $table->unsignedMediumInteger('product_id');
             $table->unsignedInteger('quantity');
             $table->dateTime('created_at')->default(DB::raw('current_timestamp()'));
