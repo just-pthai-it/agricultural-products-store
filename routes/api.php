@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,14 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
 
     Route::post('logout/{options?}', [AuthController::class, 'logout'])
          ->where(['options' => 'all-devices']);
+
+    Route::group(['prefix' => 'products'], function ()
+    {
+       Route::group(['prefix' => '{product_id}'], function ()
+       {
+           Route::get('', [ProductController::class, 'read']);
+       });
+    });
 });
 
 

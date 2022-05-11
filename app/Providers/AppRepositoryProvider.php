@@ -4,12 +4,16 @@ namespace App\Providers;
 
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\ProductRepository;
 use App\Repositories\Contracts\UserRepositoryContract;
+use App\Repositories\Contracts\ProductRepositoryContract;
 
 class AppRepositoryProvider extends ServiceProvider
 {
     public array $bindings = [
-        UserRepositoryContract::class => UserRepository::class,
+        UserRepositoryContract::class    => UserRepository::class,
+        ProductRepositoryContract::class => ProductRepository::class,
+
     ];
 
     /**
