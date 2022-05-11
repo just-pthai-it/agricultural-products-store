@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Auth\AuthenticationException;
 use App\Repositories\Contracts\UserRepositoryContract;
 
@@ -81,7 +82,8 @@ class AuthService implements Contracts\AuthServiceContract
         if ($this->verifyAccount($inputs))
         {
             $accessToken = auth()->user()->createToken('access_token')->plainTextToken;
-            return response(['accessToken' => $accessToken]);
+            return response(['data'        => new UserResource(auth()->user()),
+                             'accessToken' => $accessToken,]);
         }
 
         throw new AuthenticationException('Invalid username or password.');
