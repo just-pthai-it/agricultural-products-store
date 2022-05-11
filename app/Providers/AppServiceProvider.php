@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Services\AuthService;
 use App\Services\UserService;
+use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Services\CategoryService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Contracts\AuthServiceContract;
 use App\Services\Contracts\UserServiceContract;
+use App\Services\Contracts\OrderServiceContract;
 use App\Services\Contracts\ProductServiceContract;
 use App\Services\Contracts\CategoryServiceContract;
 
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         ProductServiceContract::class  => ProductService::class,
         CategoryServiceContract::class => CategoryService::class,
         UserServiceContract::class     => UserService::class,
+        OrderServiceContract::class    => OrderService::class,
 
     ];
 

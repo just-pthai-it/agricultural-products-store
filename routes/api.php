@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
@@ -53,6 +54,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
         Route::group(['prefix' => '{user_id}'], function ()
         {
             Route::get('carts', [UserController::class, 'readManyProductCarts']);
+
+            Route::get('orders', [OrderController::class, 'readManyByUserId']);
         });
     });
 });
