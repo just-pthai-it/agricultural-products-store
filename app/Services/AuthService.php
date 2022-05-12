@@ -86,7 +86,7 @@ class AuthService implements Contracts\AuthServiceContract
                              'accessToken' => $accessToken,]);
         }
 
-        throw new AuthenticationException('Invalid username or password.');
+        throw new AuthenticationException('Invalid email or password.');
     }
 
     public function logout (string $options)
