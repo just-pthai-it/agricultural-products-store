@@ -38,18 +38,20 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
     {
         Route::group(['prefix' => '{product_id}'], function ()
         {
-            Route::get('', [ProductController::class, 'read']);
+            Route::get('', [ProductController::class, 'read'])->withoutMiddleware(['auth:sanctum']);
         });
     });
 
 
     Route::group(['prefix' => 'categories'], function ()
     {
-        Route::get('', [CategoryController::class, 'readMany']);
+        Route::get('', [CategoryController::class, 'readMany'])
+             ->withoutMiddleware(['auth:sanctum']);
 
         Route::group(['prefix' => '{category_id}'], function ()
         {
-            Route::get('products', [ProductController::class, 'readManyByCategoryId']);
+            Route::get('products', [ProductController::class, 'readManyByCategoryId'])
+                 ->withoutMiddleware(['auth:sanctum']);
         });
     });
 
