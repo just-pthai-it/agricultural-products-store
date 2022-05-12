@@ -247,8 +247,11 @@ class UserService implements Contracts\UserServiceContract
         $values = [];
         foreach ($productsCart as $productCart)
         {
-            $values[$productCart->id] = ['price'    => $productCart->price,
-                                         'quantity' => $productCart->pivot->quantity];
+            if ($productCart->pivot->quantity != 0)
+            {
+                $values[$productCart->id] = ['price'    => $productCart->price,
+                                             'quantity' => $productCart->pivot->quantity];
+            }
         }
         $this->orderRepository->insertPivot($orderId, $values, 'products');
     }
