@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ProductCartResource;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Repositories\Contracts\ProductBatchRepositoryContract;
@@ -55,5 +56,24 @@ class UserService implements Contracts\UserServiceContract
     private function _checkIfInputQuantityIsValid (int $inputsQuantity, int $quantity) : bool
     {
         return $inputsQuantity <= $quantity;
+    }
+
+    public function storeProductCart (string $userId, string $productId, array $inputs)
+    {
+        if ($this->_checkIfProductPivotExists($userId, $productId))
+        {
+            $this->userRepository->updateExistingPivot($userId, [$productId], 'carts',
+                                                       ['quantity' => DB::raw("quantity + {$inputs['quantity']}")]);
+            return response('', 200);
+        }
+
+        $this->userRepository->insertPivot($userId, [$productId => $inputs], 'carts');
+        return response('', 201);
+    }
+
+    private function _checkIfProductPivotExists (string $userid, string $productId)
+    {
+        return $this->userRepository->checkIfPivotExist($userid, [$productId], 'carts',
+                                                        'product_id');
     }
 }

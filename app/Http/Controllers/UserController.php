@@ -32,4 +32,12 @@ class UserController extends Controller
         return $this->userService->updateProductCartQuantity($userId, $productId,
                                                              $request->validated());
     }
+
+    public function storeProductCart (StoreProductCartPostRequest $request,
+                                      string                      $userId,
+                                      string                      $productId)
+    {
+        return $this->userService->storeProductCart($userId, $productId, $request->validated());
+    }
+
 }
