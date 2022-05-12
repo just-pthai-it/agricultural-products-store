@@ -36,6 +36,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
 
     Route::group(['prefix' => 'products'], function ()
     {
+        Route::get('', [ProductController::class, 'readMany'])
+             ->withoutMiddleware(['auth:sanctum']);
+
         Route::group(['prefix' => '{product_id}'], function ()
         {
             Route::get('', [ProductController::class, 'read'])->withoutMiddleware(['auth:sanctum']);

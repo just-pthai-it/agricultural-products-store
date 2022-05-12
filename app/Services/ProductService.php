@@ -26,6 +26,12 @@ class ProductService implements Contracts\ProductServiceContract
         return new ProductResource($product);
     }
 
+    public function readMany (array $inputs) : AnonymousResourceCollection
+    {
+        $products = $this->productRepository->find(['*'], [], [], [], [['filter', $inputs]]);
+        return ProductResource::collection($products);
+    }
+
     public function readManyByCategoryId (string $categoryId,
                                           array  $inputs) : AnonymousResourceCollection
     {

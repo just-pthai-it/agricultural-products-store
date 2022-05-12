@@ -23,6 +23,11 @@ class ProductController extends Controller
         return $this->productService->read($productId, $request->all());
     }
 
+    public function readMany (Request $request)
+    {
+        return $this->productService->readMany($request->all());
+    }
+
     public function readManyByCategoryId (Request $request, string $categoryId)
     {
         return $this->productService->readManyByCategoryId($categoryId, $request->all());
