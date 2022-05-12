@@ -62,6 +62,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
                     Route::patch('quantity', [UserController::class, 'updateProductCartQuantity']);
 
                     Route::post('', [UserController::class, 'storeProductCart']);
+
+                    Route::delete('', [UserController::class, 'deleteProductCart']);
                 });
             });
 

@@ -76,4 +76,9 @@ class UserService implements Contracts\UserServiceContract
         return $this->userRepository->checkIfPivotExist($userid, [$productId], 'carts',
                                                         'product_id');
     }
+
+    public function deleteProductCart (string $userId, string $productId)
+    {
+        $this->userRepository->deletePivot($userId, [$productId], 'carts');
+    }
 }

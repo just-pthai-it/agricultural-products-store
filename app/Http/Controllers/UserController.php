@@ -40,4 +40,8 @@ class UserController extends Controller
         return $this->userService->storeProductCart($userId, $productId, $request->validated());
     }
 
+    public function deleteProductCart (Request $request, string $userId, string $productId)
+    {
+        $this->userService->deleteProductCart($userId, $productId);
+    }
 }
