@@ -29,12 +29,13 @@ class UserService implements Contracts\UserServiceContract
         return ProductCartResource::collection($products);
     }
 
-    public function updateProductCartQuantity (string $userId, array $inputs)
+    public function updateProductCartQuantity (string $userId, string $productId, array $inputs)
     {
-        $productQuantity = $this->_readProductQuantityByProductId($inputs['product_id']);
+        $productQuantity = $this->_readProductQuantityByProductId($productId);
         if ($this->_checkIfInputQuantityIsValid($inputs['quantity'], $productQuantity))
         {
-            $this->userRepository->updateProductCartQuantityByUserId($userId, $inputs);
+            $this->userRepository->updateProductCartQuantityByUserIdAndProductId($userId, $productId,
+                                                                                 $inputs);
             return response('', 200);
         }
         else

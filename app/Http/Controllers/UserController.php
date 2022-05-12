@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Contracts\UserServiceContract;
+use App\Http\Requests\StoreProductCartPostRequest;
 use App\Http\Requests\UpdateProductCartPatchRequest;
 
 class UserController extends Controller
@@ -25,8 +26,10 @@ class UserController extends Controller
     }
 
     public function updateProductCartQuantity (UpdateProductCartPatchRequest $request,
-                                               string                        $userId)
+                                               string                        $userId,
+                                               string                        $productId)
     {
-        return $this->userService->updateProductCartQuantity($userId, $request->all());
+        return $this->userService->updateProductCartQuantity($userId, $productId,
+                                                             $request->validated());
     }
 }

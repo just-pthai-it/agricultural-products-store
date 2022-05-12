@@ -18,9 +18,10 @@ class UserRepository extends BaseRepository implements Contracts\UserRepositoryC
         return $this->model->find($userId)->carts;
     }
 
-    public function updateProductCartQuantityByUserId (string $userId, array $inputs)
+    public function updateProductCartQuantityByUserIdAndProductId (string $userId,
+                                                                   string $productId, array $inputs)
     {
-        return $this->model->find($userId)->carts()->updateExistingPivot($inputs['product_id'], [
+        return $this->model->find($userId)->carts()->updateExistingPivot($productId, [
             'quantity' => $inputs['quantity'],
         ]);
     }

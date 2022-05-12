@@ -22,7 +22,6 @@ class UpdateProductCartPatchRequest extends ACustomFormRequest
     public function rules () : array
     {
         return [
-            'product_id' => 'required',
             'quantity' => 'required|integer|gt:0'
         ];
     }
