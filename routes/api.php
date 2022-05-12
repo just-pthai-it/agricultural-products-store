@@ -53,7 +53,13 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
     {
         Route::group(['prefix' => '{user_id}'], function ()
         {
-            Route::get('carts', [UserController::class, 'readManyProductCarts']);
+            Route::group(['prefix' => 'carts'], function ()
+            {
+                Route::get('', [UserController::class, 'readManyProductCarts']);
+
+                Route::patch('{product_id}/quantity',
+                             [UserController::class, 'updateProductCartQuantity']);
+            });
 
             Route::get('orders', [OrderController::class, 'readManyByUserId']);
         });

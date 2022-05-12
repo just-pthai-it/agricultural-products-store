@@ -23,6 +23,7 @@ class ProductCartResource extends JsonResource
             'categoryId'   => $this->category_id,
             'productUnit'  => $this->productUnit->name,
             'quantity'     => $this->pivot->quantity,
+            'maxQuantity'  => $this->productBatches[0]->quantity,
             'price'        => $this->price,
             'image'        => $this->image,
             'previewImage' => $this->preview_image,
