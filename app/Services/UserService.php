@@ -39,8 +39,21 @@ class UserService implements Contracts\UserServiceContract
 
     public function readManyProductCarts (string $userId) : AnonymousResourceCollection
     {
-        $products = $this->userRepository->findProductCartsByUserId($userId);
-        return ProductCartResource::collection($products);
+        $productsCart = $this->userRepository->findProductCartsByUserId($userId);
+        $this->_updateProductsCartQuantity($productsCart);
+        return ProductCartResource::collection($productsCart);
+    }
+
+    private function _updateProductsCartQuantity (Collection $productsCart)
+    {
+        foreach ($productsCart as $productCart)
+        {
+            if ($productCart->pivot->quantity > $productCart->productBatches[0]->quantity)
+            {
+                $productCart->pivot->quantity = $productCart->productBatches[0]->quantity;
+                $productCart->pivot->save();
+            }
+        }
     }
 
     public function updateProductCartQuantity (string $userId, string $productId, array $inputs)
