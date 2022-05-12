@@ -4,24 +4,33 @@ namespace App\Services;
 
 use App\Http\Resources\ProductResource;
 use App\Repositories\Contracts\ProductRepositoryContract;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductService implements Contracts\ProductServiceContract
 {
-    private ProductRepositoryContract $productDepository;
+    private ProductRepositoryContract $productRepository;
 
     /**
-     * @param ProductRepositoryContract $productDepository
+     * @param ProductRepositoryContract $productRepository
      */
-    public function __construct (ProductRepositoryContract $productDepository)
+    public function __construct (ProductRepositoryContract $productRepository)
     {
-        $this->productDepository = $productDepository;
+        $this->productRepository = $productRepository;
     }
 
-    public function read (string $productId, array $inputs)
+    public function read (string $productId, array $inputs) : ProductResource
     {
-        $product = $this->productDepository->find(['*'], [['id', '=', $productId]], [], [],
-                                                  [['filter', $inputs], ['with', 'productBatches', 'productUnit', 'productDetailImages']])[0];
+        $product = $this->productRepository->find(['*'], [['id', '=', $productId]], [], [],
+                                                  [['filter', $inputs], ['with', 'productBatches', 'productUnit', 'productRetailImages']])[0];
 
         return new ProductResource($product);
+    }
+
+    public function readManyByCategoryId (string $categoryId,
+                                          array  $inputs) : AnonymousResourceCollection
+    {
+        $products = $this->productRepository->find(['*'], [['category_id', '=', $categoryId]], [],
+                                                   [], [['filter', $inputs]]);
+        return ProductResource::collection($products);
     }
 }

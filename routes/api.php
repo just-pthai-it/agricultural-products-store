@@ -46,6 +46,11 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
     Route::group(['prefix' => 'categories'], function ()
     {
         Route::get('', [CategoryController::class, 'readMany']);
+
+        Route::group(['prefix' => '{category_id}'], function ()
+        {
+            Route::get('products', [ProductController::class, 'readManyByCategoryId']);
+        });
     });
 
 
