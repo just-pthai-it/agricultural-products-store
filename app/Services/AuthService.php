@@ -27,7 +27,7 @@ class AuthService implements Contracts\AuthServiceContract
         }
         else
         {
-            return response(['errors' => $errors], 406);
+            return response(['errors' => $errors], 409);
         }
     }
 
