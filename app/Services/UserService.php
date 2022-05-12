@@ -35,8 +35,8 @@ class UserService implements Contracts\UserServiceContract
         $productQuantity = $this->_readProductQuantityByProductId($productId);
         if ($this->_checkIfInputQuantityIsValid($inputs['quantity'], $productQuantity))
         {
-            $this->userRepository->updateProductCartQuantityByUserIdAndProductId($userId, $productId,
-                                                                                 $inputs);
+            $this->userRepository->updateExistingPivot($userId, [$productId],
+                                                       'carts', $inputs);
             return response('', 200);
         }
         else
