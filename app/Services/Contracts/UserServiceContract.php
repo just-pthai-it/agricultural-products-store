@@ -11,4 +11,6 @@ interface UserServiceContract
     public function createProductCart (string $userId, string $productId, array $inputs);
 
     public function deleteProductCart (string $userId, string $productId);
+
+    public function checkout (string $userId, array $inputs);
 }

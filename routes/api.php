@@ -73,6 +73,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['default.headers', 'auth:sanctu
             });
 
             Route::get('orders', [OrderController::class, 'readManyByUserId']);
+
+            Route::post('checkout', [UserController::class, 'checkout']);
         });
     });
 });

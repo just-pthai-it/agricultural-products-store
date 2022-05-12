@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\CheckoutPostRequest;
 use App\Services\Contracts\UserServiceContract;
 use App\Http\Requests\CreateProductCartPostRequest;
 use App\Http\Requests\UpdateProductCartPatchRequest;
@@ -43,5 +44,10 @@ class UserController extends Controller
     public function deleteProductCart (Request $request, string $userId, string $productId)
     {
         $this->userService->deleteProductCart($userId, $productId);
+    }
+
+    public function checkout (CheckoutPostRequest $request, string $userId)
+    {
+        return $this->userService->checkout($userId, $request->validated());
     }
 }
