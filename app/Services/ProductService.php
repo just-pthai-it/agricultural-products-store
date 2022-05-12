@@ -21,7 +21,7 @@ class ProductService implements Contracts\ProductServiceContract
     public function read (string $productId, array $inputs) : ProductResource
     {
         $product = $this->productRepository->find(['*'], [['id', '=', $productId]], [], [],
-                                                  [['filter', $inputs], ['with', 'productBatches', 'productUnit', 'productRetailImages']])[0];
+                                                  [['filter', $inputs], ['with', 'productBatches', 'productUnit', 'productDetailImages']])[0];
 
         return new ProductResource($product);
     }

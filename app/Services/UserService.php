@@ -132,7 +132,7 @@ class UserService implements Contracts\UserServiceContract
                             self::TRANSACTION_ERROR_CODE);
         }
 
-        return response(['errors' => $errors], 406);
+        return response(['errors' => $errors], 409);
     }
 
     private function _transaction (string $userId, array $inputs) : array
@@ -171,6 +171,8 @@ class UserService implements Contracts\UserServiceContract
                 $errors[] = 'Product quantity has been updated';
                 DB::rollBack();
             }
+            DB::rollBack();
+
         });
 
         return $errors;
