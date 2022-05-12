@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Contracts\UserServiceContract;
-use App\Http\Requests\StoreProductCartPostRequest;
+use App\Http\Requests\CreateProductCartPostRequest;
 use App\Http\Requests\UpdateProductCartPatchRequest;
 
 class UserController extends Controller
@@ -33,11 +33,11 @@ class UserController extends Controller
                                                              $request->validated());
     }
 
-    public function storeProductCart (StoreProductCartPostRequest $request,
-                                      string                      $userId,
-                                      string                      $productId)
+    public function createProductCart (CreateProductCartPostRequest $request,
+                                       string                       $userId,
+                                       string                       $productId)
     {
-        return $this->userService->storeProductCart($userId, $productId, $request->validated());
+        return $this->userService->createProductCart($userId, $productId, $request->validated());
     }
 
     public function deleteProductCart (Request $request, string $userId, string $productId)

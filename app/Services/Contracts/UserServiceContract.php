@@ -8,7 +8,7 @@ interface UserServiceContract
 
     public function updateProductCartQuantity (string $userId, string $productId, array $inputs);
 
-    public function storeProductCart (string $userId, string $productId, array $inputs);
+    public function createProductCart (string $userId, string $productId, array $inputs);
 
     public function deleteProductCart (string $userId, string $productId);
 }

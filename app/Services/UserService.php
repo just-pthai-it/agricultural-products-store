@@ -58,15 +58,25 @@ class UserService implements Contracts\UserServiceContract
         return $inputsQuantity <= $quantity;
     }
 
-    public function storeProductCart (string $userId, string $productId, array $inputs)
+    public function createProductCart (string $userId, string $productId, array $inputs)
     {
         if ($this->_checkIfProductPivotExists($userId, $productId))
         {
-            $this->userRepository->updateExistingPivot($userId, [$productId], 'carts',
-                                                       ['quantity' => DB::raw("quantity + {$inputs['quantity']}")]);
-            return response('', 200);
+            return $this->_updateExistingProductCart($userId, $productId, $inputs);
         }
 
+        return $this->_createProductCart($userId, $productId, $inputs);
+    }
+
+    private function _updateExistingProductCart (string $userId, string $productId, array $inputs)
+    {
+        $this->userRepository->updateExistingPivot($userId, [$productId], 'carts',
+                                                   ['quantity' => DB::raw("quantity + {$inputs['quantity']}")]);
+        return response('', 200);
+    }
+
+    private function _createProductCart (string $userId, string $productId, array $inputs)
+    {
         $this->userRepository->insertPivot($userId, [$productId => $inputs], 'carts');
         return response('', 201);
     }

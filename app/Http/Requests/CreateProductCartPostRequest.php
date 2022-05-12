@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Abstracts\ACustomFormRequest;
 
-class StoreProductCartPostRequest extends ACustomFormRequest
+class CreateProductCartPostRequest extends ACustomFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
