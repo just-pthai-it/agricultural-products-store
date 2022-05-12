@@ -23,7 +23,7 @@ class AuthService implements Contracts\AuthServiceContract
         if (empty($errors = $this->_isEmailOrPhoneUsed($inputs)))
         {
             $this->_createUser($inputs);
-            return response('' . 201);
+            return response('', 201);
         }
         else
         {
