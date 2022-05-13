@@ -171,8 +171,6 @@ class UserService implements Contracts\UserServiceContract
                 $errors[] = 'Product quantity has been updated';
                 DB::rollBack();
             }
-            DB::rollBack();
-
         });
 
         return $errors;
